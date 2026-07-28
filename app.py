@@ -56,10 +56,11 @@ def auto_schedule(df_courses, principal, directors, chiefs, librarian):
         block_teacher(t, '三', 1)  # 新增: 行政會議 週三1
         block_teacher(t, '三', 2)  # 新增: 行政會議 週三2
         
-    # 規則 1: 校長盡量一、二 (封鎖 三、四、五)
-    block_teacher(principal, '三', p) for p in periods
-    block_teacher(principal, '四', p) for p in periods
-    block_teacher(principal, '五', p) for p in periods
+# 規則 1: 校長盡量一、二 (封鎖 三、四、五)
+    for p in periods:
+        block_teacher(principal, '三', p)
+        block_teacher(principal, '四', p)
+        block_teacher(principal, '五', p)
     
     # 規則 2: 主任盡量一、三、五不排課
     for d in ['一', '三', '五']:
